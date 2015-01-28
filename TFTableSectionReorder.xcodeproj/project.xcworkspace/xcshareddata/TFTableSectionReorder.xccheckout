@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>B9548BF1-FE92-444A-952D-A6F0D90AACFB</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TFTableSectionReorder</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>CE27DB5A054E21E1BA222BF65575BBE9BFA374EB</key>
+		<string>https://github.com/Sidetalker/TFTableSectionReorder.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>TFTableSectionReorder.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>CE27DB5A054E21E1BA222BF65575BBE9BFA374EB</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Sidetalker/TFTableSectionReorder.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>CE27DB5A054E21E1BA222BF65575BBE9BFA374EB</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>CE27DB5A054E21E1BA222BF65575BBE9BFA374EB</string>
+			<key>IDESourceControlWCCName</key>
+			<string>TFTableSectionReorder</string>
+		</dict>
+	</array>
+</dict>
+</plist>
