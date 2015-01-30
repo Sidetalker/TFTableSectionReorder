@@ -8,8 +8,8 @@
 
 import UIKit
 
-let stopCount = 5
-let studentCount = 4
+let stopCount = 4
+let studentCount = 3
 
 struct studentData {
     var name = "Knobby"
@@ -120,7 +120,7 @@ class DataManager {
 
         println("Populating \(stopCount) stops with \(studentCount) students each")
 
-        let alphabet = ["a", "b", "c", "d", "e"]
+        let alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
 
         for stop in 0...stops - 1 {
             let stopMeta = stopData(name: "Stop \(stop + 1)")
@@ -188,19 +188,6 @@ class DataManager {
         return "--ERROR--"
     }
 
-    func cellIndex(indexPath: NSIndexPath) -> Int {
-        var curCells = [cellData]()
-
-        if movingStop {
-            curCells = cellsCollapsed
-        }
-        else {
-            curCells = cells
-        }
-
-        return curCells[indexPath.row].trueIndex
-    }
-
     func prepareForMove(indexPath: NSIndexPath, touchPoint: CGPoint) {
         cellHistory = cells
 
@@ -264,83 +251,153 @@ class DataManager {
             let oldSection = cells[cellStartIndex].sectionIndex
             let newSection = destination.row
             
-            // Calculate the absolute index of the new section location
-            
             // Determine direction of the move
             let movedUp = origin.row > destination.row ? true : false
 
-            // Update the cellMetadata with the modified trueIndex
-            if movedUp {
-                var newSectionIndex = -1
-                
-                for (var i = 0; i < cells.count; i++) {
-                    if cells[i].sectionIndex == newSection && cells[i].isSection {
-                        newSectionIndex = i
-                    }
-                }
-                
-                if newSectionIndex == -1 {
-                    println("ERRORRRRY")
-                }
-                
-                
-                
-                
-                // Calculate the end index of the cell and offset by children
-                var cellEndIndex = 0
-                var modA = 0
-                var modB = 0
+            // Identify the true index of the origin section
+            var newSectionTrueIndex = -1
 
-                for i in 0...cells.count - 1 {
-                    if cells[i].sectionIndex > destination.row && cells[i].sectionIndex < origin.row {
-                        modA++
-                    }
-                }
-
-                // Update true indices
-                for i in 0...cells.count - 1 {
-
-                }
-
-
-                for i in cellEndIndex + cells[cellEndIndex].studentCount + 1...cellStartIndex - 2 {
-                    if cells[i].sectionIndex == origin.row && cells[i].isSection {
-                        modA = 0
-
-                        let newTrueIndex = cells[i].trueIndex + modB
-                        cells[i].updateTrueIndex(newTrueIndex)
-                    }
-                    else if modA != 0 {
-                        let newTrueIndex = cells[i].trueIndex - modA
-                        cells[i].updateTrueIndex(newTrueIndex)
-                        modB++
-                    }
+            for (var i = 0; i < cells.count; i++) {
+                if cells[i].sectionIndex == newSection && cells[i].isSection {
+                    newSectionTrueIndex = i
+                    break
                 }
             }
+
+            if !movedUp && origin.row != destination.row {
+                var modEndIndex = -1
+                var modSectionCellCount = -1
+
+                // Determine the ending index of the cells whose indices will be modified
+                for (var i = newSectionTrueIndex; i >= 0; i--) {
+                    if cells[i].sectionIndex == oldSection && cells[i].isSection {
+                        modEndIndex = i + cells[i].studentCount
+                        break
+                    }
+                }
+
+                // This means that the section moved was the last on the list
+                if modEndIndex == -1 {
+                    modEndIndex = cells.count - 1
+                }
+
+                let modStart = newSectionTrueIndex + cellData.studentCount + 1
+                let sectionSize = cellData.studentCount + 1
+                var modTrue = 0
+                var modSection = 0
+
+                // Modify the manipulated cells and determine mod value for non-manipulated cells
+                for (var i = newSectionTrueIndex; i <= modEndIndex - cellData.studentCount - 1; i++) {
+                    cells[i].sectionIndex += 1
+                    cells[i].trueIndex += sectionSize
+
+                    if cells[i].isSection {
+                        modSection++
+                    }
+
+                    modTrue++
+                }
+
+                // Modify the affected (but not manipulated) cells and determine mod value for manipulated cells]
+                for (var i = cellStartIndex; i <= modEndIndex; i++) {
+                    cells[i].sectionIndex -= modSection
+                    cells[i].trueIndex -= modTrue
+                }
+
+                rectifyTrueIndices()
+            }
+            else if movedUp {
+                var modEndIndex = -1
+                var modSectionCellCount = -1
+
+                // Determine the ending index of the cells whose indices will be modified
+                for (var i = newSectionTrueIndex; i < cells.count; i++) {
+                    if cells[i].sectionIndex == oldSection && cells[i].isSection {
+                        modEndIndex = i + cells[i].studentCount
+                        break
+                    }
+                }
+
+                // This means that the section moved was the last on the list
+                if modEndIndex == -1 {
+                    modEndIndex = cells.count - 1
+                }
+
+                let modStart = newSectionTrueIndex + cellData.studentCount + 1
+                let sectionSize = cellData.studentCount + 1
+                var modTrue = 0
+                var modSection = 0
+
+                // Modify the manipulated cells and determine mod value for non-manipulated cells
+                for (var i = newSectionTrueIndex; i <= modEndIndex - cellData.studentCount - 1; i++) {
+                    cells[i].sectionIndex += 1
+                    cells[i].trueIndex += sectionSize
+
+                    if cells[i].isSection {
+                        modSection++
+                    }
+
+                    modTrue++
+                }
+
+                // Modify the affected (but not manipulated) cells and determine mod value for manipulated cells]
+                for (var i = cellStartIndex; i <= modEndIndex; i++) {
+                    cells[i].sectionIndex -= modSection
+                    cells[i].trueIndex -= modTrue
+                }
+
+                rectifyTrueIndices()
+            }
+
+            var reloadIndices = [NSIndexPath]()
 
             // Populate animation container with all student cell locations
             for cell in cells {
                 if !cell.isSection {
                     animationIndices.append(NSIndexPath(forRow: cell.trueIndex, inSection: 0))
                 }
+                else {
+                    reloadIndices.append(NSIndexPath(forRow: cell.trueIndex, inSection: 0))
+                }
             }
 
             tableView.beginUpdates()
             movingStop = false
 
+            tableView.reloadData()
             tableView.insertRowsAtIndexPaths(animationIndices, withRowAnimation: UITableViewRowAnimation.Top)
 
             tableView.endUpdates()
+//            tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
 
             UIView.animateWithDuration(0.3, animations: {
                 self.tableView.frame = UIScreen.mainScreen().bounds
             })
-
-            tableView.reloadData()
         }
         else {
 
         }
+    }
+
+    func rectifyTrueIndices() {
+        var newCells = [cellData]()
+        var curCell = 0
+        var curTrueIndex = 0
+
+        while (newCells.count != cells.count) {
+            if cells[curCell].trueIndex == curTrueIndex {
+                newCells.append(cells[curCell])
+                curTrueIndex++
+            }
+
+            curCell++
+
+            if curCell == cells.count {
+                curCell = 0
+            }
+        }
+
+        cells = newCells
     }
 }
 
@@ -353,8 +410,8 @@ class TableReorderController: UITableViewController, UITableViewDataSource, UITa
         super.viewDidLoad()
 
         data = DataManager(tableView: self.tableView)
-        var something = UIView.appearance()
-//        something.backgroundColor = UIColor.groupTableViewBackgroundColor()
+        var mainView = self.navigationController!.viewControllers[0] as UIViewController
+        mainView.view.backgroundColor = UIColor.groupTableViewBackgroundColor()
     }
 
     override func didReceiveMemoryWarning() {
@@ -392,11 +449,11 @@ class TableReorderController: UITableViewController, UITableViewDataSource, UITa
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellText = data.cellText(indexPath)
         let cellID = data.cellID(indexPath)
-        let cellIndex = data.cellIndex(indexPath)
+        let cellIndex = indexPath.row
 
         if cellID == "cellStop" {
             var cell = tableView.dequeueReusableCellWithIdentifier(cellID) as StopCell
-            cell.textLabel?.text = "(\(cellIndex)) \(cellText)"
+            cell.textLabel?.text = cellText
             cell.indexPath = indexPath
             cell.delegate = self
 
@@ -404,7 +461,7 @@ class TableReorderController: UITableViewController, UITableViewDataSource, UITa
         }
         else if cellID == "cellStudent" {
             var cell = tableView.dequeueReusableCellWithIdentifier(cellID) as UITableViewCell
-            cell.textLabel?.text = "(\(cellIndex)) \(cellText)"
+            cell.textLabel?.text = cellText
 
             return cell
         }
