@@ -258,18 +258,34 @@ class DataManager {
             // Prepare animation container
             var animationIndices = [NSIndexPath]()
 
-            // Determine if the reordering was up or down
-            let movedUp = origin.row > destination.row ? true : false
+            // Get all the easy data
             var cellData = cellsCollapsed[origin.row]
             let cellStartIndex = cellData.trueIndex
-
-
-            let oldIndex = cells[cellStartIndex].sectionIndex
-            let newIndex = destination.row
-            cells[cellStartIndex].updateSectionIndex(newIndex)
+            let oldSection = cells[cellStartIndex].sectionIndex
+            let newSection = destination.row
+            
+            // Calculate the absolute index of the new section location
+            
+            // Determine direction of the move
+            let movedUp = origin.row > destination.row ? true : false
 
             // Update the cellMetadata with the modified trueIndex
             if movedUp {
+                var newSectionIndex = -1
+                
+                for (var i = 0; i < cells.count; i++) {
+                    if cells[i].sectionIndex == newSection && cells[i].isSection {
+                        newSectionIndex = i
+                    }
+                }
+                
+                if newSectionIndex == -1 {
+                    println("ERRORRRRY")
+                }
+                
+                
+                
+                
                 // Calculate the end index of the cell and offset by children
                 var cellEndIndex = 0
                 var modA = 0
@@ -326,67 +342,6 @@ class DataManager {
 
         }
     }
-
-
-
-//        cellHistory = cells
-//
-//        if !cells[indexPath.row].isSection {
-//            return
-//        }
-//
-//        let tappedCell = tableView.cellForRowAtIndexPath(indexPath)
-//
-//        cellsCollapsed = [cellData]()
-//        var animationIndices = [NSIndexPath]()
-//
-//        for i in 0...cells.count - 1 {
-//            if cells[i].isSection {
-//                cells[i].updateTrueIndex(cellsCollapsed.count)
-//                //                println("Adding row \(i) to the collapsedContainer with new trueIndex of \(cellsCollapsed.count)")
-//                cellsCollapsed.append(cells[i])
-//            }
-//            else {
-//                animationIndices.append(NSIndexPath(forRow: cells[i].trueIndex, inSection: 0))
-//                cells[i].updateTrueIndex(0)
-//                //                println("Adding row \(i) to deletion array")
-//            }
-//        }
-//
-//        let originalFrame = tappedCell!.frame
-//
-//        tableView.beginUpdates()
-//        movingStop = true
-//
-//        tableView.deleteRowsAtIndexPaths(animationIndices, withRowAnimation: UITableViewRowAnimation.Top)
-//
-//        tableView.endUpdates()
-//
-//        for cell in tableView.visibleCells() {
-//            if cell as StopCell == tappedCell! {
-//                var cellYLoc = originalFrame.origin.y
-//                let oldSize = self.tableView.frame.size
-//
-//                if navBar != nil {
-//                    cellYLoc -= navBar!.frame.height
-//                }
-//
-//                for more in tableView.visibleCells() {
-//                    let curCell = more as UITableViewCell
-//
-//                    if tableView.indexPathForCell(curCell)!.row < tableView.indexPathForCell(cell as UITableViewCell)!.row {
-//                        cellYLoc -= curCell.frame.height
-//                    }
-//                }
-//
-//                let newPoint = CGPoint(x: 0, y: cellYLoc)
-//                let newSize = CGSize(width: oldSize.width, height: oldSize.height - cellYLoc)
-//
-//                UIView.animateWithDuration(0.3, animations: {
-//                    self.tableView.frame = CGRect(origin: newPoint, size: newSize)
-//                })
-//            }
-//        }
 }
 
 class TableReorderController: UITableViewController, UITableViewDataSource, UITableViewDelegate, StopCellDelegate {
