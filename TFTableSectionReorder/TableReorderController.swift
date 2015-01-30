@@ -264,48 +264,48 @@ class DataManager {
                 }
             }
 
+            // A section cell was moved down
             if !movedUp && origin.row != destination.row {
-                var modEndIndex = -1
-                var modSectionCellCount = -1
+                var minusModStartIndex = -1
+                var minusModEndIndex = -1
+                var minusMod = cells[newSectionTrueIndex].studentCount + 1
+                var plusModStartIndex = cellData.trueIndex
+                var plusModEndIndex = cellData.trueIndex + cellData.studentCount
+                var plusMod: Int!
 
-                // Determine the ending index of the cells whose indices will be modified
+                newSectionTrueIndex += cells[newSectionTrueIndex].studentCount
+
+                // Determine starting index of cells to be decremented
                 for (var i = newSectionTrueIndex; i >= 0; i--) {
                     if cells[i].sectionIndex == oldSection && cells[i].isSection {
-                        modEndIndex = i + cells[i].studentCount
+                        minusModStartIndex = i + cells[i].studentCount + 1
                         break
                     }
                 }
 
-                // This means that the section moved was the last on the list
-                if modEndIndex == -1 {
-                    modEndIndex = cells.count - 1
+                // This means that the section moved was the first on the list
+                if minusModStartIndex == -1 {
+                    minusModStartIndex = 0
                 }
 
-                let modStart = newSectionTrueIndex + cellData.studentCount + 1
-                let sectionSize = cellData.studentCount + 1
-                var modTrue = 0
-                var modSection = 0
+                // Determine the ending index of cells to be decremented
+                minusModEndIndex = newSectionTrueIndex
+                plusMod = minusModEndIndex - minusModStartIndex + 1
 
-                // Modify the manipulated cells and determine mod value for non-manipulated cells
-                for (var i = newSectionTrueIndex; i <= modEndIndex - cellData.studentCount - 1; i++) {
-                    cells[i].sectionIndex += 1
-                    cells[i].trueIndex += sectionSize
-
-                    if cells[i].isSection {
-                        modSection++
-                    }
-
-                    modTrue++
+                // Decrement the designated cells
+                for (var i = minusModStartIndex; i <= minusModEndIndex; i++) {
+                    cells[i].sectionIndex -= 1
+                    cells[i].trueIndex -= minusMod
                 }
 
-                // Modify the affected (but not manipulated) cells and determine mod value for manipulated cells]
-                for (var i = cellStartIndex; i <= modEndIndex; i++) {
-                    cells[i].sectionIndex -= modSection
-                    cells[i].trueIndex -= modTrue
+                for (var i = plusModStartIndex; i <= plusModEndIndex; i++) {
+                    cells[i].sectionIndex = newSection
+                    cells[i].trueIndex += plusMod
                 }
 
                 rectifyTrueIndices()
             }
+            // A section cell was moved up
             else if movedUp {
                 var modEndIndex = -1
                 var modSectionCellCount = -1
@@ -350,22 +350,27 @@ class DataManager {
             }
 
             var reloadIndices = [NSIndexPath]()
+            var curRow = 0
 
             // Populate animation container with all student cell locations
             for cell in cells {
-                if !cell.isSection {
-                    animationIndices.append(NSIndexPath(forRow: cell.trueIndex, inSection: 0))
+                if cell.isSection {
+                    reloadIndices.append(NSIndexPath(forRow: curRow, inSection: 0))
+                    curRow++
                 }
-                else {
-                    reloadIndices.append(NSIndexPath(forRow: cell.trueIndex, inSection: 0))
-                }
+
+                animationIndices.append(NSIndexPath(forRow: cell.trueIndex, inSection: 0))
             }
+
+            tableView.reloadData()
 
             tableView.beginUpdates()
             movingStop = false
 
-            tableView.reloadData()
-            tableView.insertRowsAtIndexPaths(animationIndices, withRowAnimation: UITableViewRowAnimation.Top)
+
+            tableView.deleteRowsAtIndexPaths(reloadIndices, withRowAnimation: UITableViewRowAnimation.Fade)
+            tableView.insertRowsAtIndexPaths(reloadIndices, withRowAnimation: UITableViewRowAnimation.Middle)
+            tableView.insertRowsAtIndexPaths(animationIndices, withRowAnimation: UITableViewRowAnimation.Middle)
 
             tableView.endUpdates()
 //            tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
