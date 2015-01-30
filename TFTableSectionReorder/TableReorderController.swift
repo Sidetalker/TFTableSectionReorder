@@ -212,7 +212,7 @@ class DataManager {
             tableView.beginUpdates()
             movingStop = true
 
-            tableView.deleteRowsAtIndexPaths(animationIndices, withRowAnimation: UITableViewRowAnimation.Top)
+            tableView.deleteRowsAtIndexPaths(animationIndices, withRowAnimation: UITableViewRowAnimation.Right)
 
             tableView.endUpdates()
 
@@ -241,18 +241,20 @@ class DataManager {
     }
 
     func completeMove(origin: NSIndexPath, destination: NSIndexPath) {
+        // Determine direction of the move and grab the cell data
+        let movedUp = origin.row > destination.row ? true : false
+        var cellData = cells[origin.row]
+
         if movingStop {
+            cellData = cellsCollapsed[origin.row]
+
             // Prepare animation container
             var animationIndices = [NSIndexPath]()
 
             // Get all the easy data
-            var cellData = cellsCollapsed[origin.row]
             let cellStartIndex = cellData.trueIndex
             let oldSection = cells[cellStartIndex].sectionIndex
             let newSection = destination.row
-            
-            // Determine direction of the move
-            let movedUp = origin.row > destination.row ? true : false
 
             // Identify the true index of the origin section
             var newSectionTrueIndex = -1
@@ -358,8 +360,9 @@ class DataManager {
                     reloadIndices.append(NSIndexPath(forRow: curRow, inSection: 0))
                     curRow++
                 }
-
-                animationIndices.append(NSIndexPath(forRow: cell.trueIndex, inSection: 0))
+                else {
+                     animationIndices.append(NSIndexPath(forRow: cell.trueIndex, inSection: 0))
+                }
             }
 
             tableView.reloadData()
@@ -367,20 +370,37 @@ class DataManager {
             tableView.beginUpdates()
             movingStop = false
 
-
-            tableView.deleteRowsAtIndexPaths(reloadIndices, withRowAnimation: UITableViewRowAnimation.Fade)
-            tableView.insertRowsAtIndexPaths(reloadIndices, withRowAnimation: UITableViewRowAnimation.Middle)
-            tableView.insertRowsAtIndexPaths(animationIndices, withRowAnimation: UITableViewRowAnimation.Middle)
+            tableView.insertRowsAtIndexPaths(animationIndices, withRowAnimation: UITableViewRowAnimation.Right)
 
             tableView.endUpdates()
-//            tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
 
             UIView.animateWithDuration(0.3, animations: {
                 self.tableView.frame = UIScreen.mainScreen().bounds
             })
         }
         else {
+            let startRow = origin.row
+            let endRow = destination.row
 
+            if movedUp && startRow != endRow {
+                var curSection = cellData.sectionIndex
+
+                for (var i = startRow; i >= endRow; i--) {
+                    cells[i].trueIndex++
+                    cells[startRow].trueIndex--
+
+                    if cells[i].isSection {
+//                        cells[i].isSection = false
+//                        cells[i + 1].isSection = true
+                        curSection--
+                    }
+                }
+
+//                cells[startRow].trueIndex--
+                cells[startRow].sectionIndex = curSection
+            }
+
+            rectifyTrueIndices()
         }
     }
 
