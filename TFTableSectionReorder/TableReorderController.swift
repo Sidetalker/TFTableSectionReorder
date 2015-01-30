@@ -116,30 +116,29 @@ class DataManager {
     }
 
     func addRandomData(stops: Int, studentsPer: Int) {
-        var curStopIndex = 0
         var studentOffset = 0
 
         println("Populating \(stopCount) stops with \(studentCount) students each")
 
+        let alphabet = ["a", "b", "c", "d", "e"]
+
         for stop in 0...stops - 1 {
-            let stopMeta = stopData(name: "Stop \(curStopIndex + 1)")
-            var cellMeta = cellData(trueIndex: curStopIndex + studentOffset, sectionIndex: curStopIndex, isSection: true, studentCount: studentCount, studentMeta: nil, stopMeta: stopMeta)
+            let stopMeta = stopData(name: "Stop \(stop + 1)")
+            var cellMeta = cellData(trueIndex: stop + studentOffset, sectionIndex: stop, isSection: true, studentCount: studentCount, studentMeta: nil, stopMeta: stopMeta)
 
             cells.append(cellMeta)
-            println("\(stopMeta.name) @ row \(curStopIndex + studentOffset)")
+            println("\(stopMeta.name) @ row \(stop + studentOffset)")
 
             for student in 0...studentsPer - 1 {
-                let studentMeta = studentData(name: "Student \(curStopIndex + 1)-\(student + 1)")
-                var cellMeta = cellData(trueIndex: curStopIndex + studentOffset + 1, sectionIndex: student, isSection: false, studentCount: 1, studentMeta: studentMeta, stopMeta: nil)
+                let studentMeta = studentData(name: "Student \(stop + 1)-\(student + 1)\(alphabet[stop])")
+                var cellMeta = cellData(trueIndex: stop + studentOffset + 1, sectionIndex: stop, isSection: false, studentCount: 1, studentMeta: studentMeta, stopMeta: nil)
 
-                println("\(studentMeta.name) @ row \(curStopIndex + studentOffset + 1)")
+                println("\(studentMeta.name) @ row \(stop + studentOffset + 1)")
 
                 cells.append(cellMeta)
 
                 studentOffset++
             }
-
-            curStopIndex++
         }
     }
 
@@ -268,8 +267,6 @@ class DataManager {
             let oldIndex = cells[cellStartIndex].sectionIndex
             let newIndex = destination.row
             cells[cellStartIndex].updateSectionIndex(newIndex)
-
-            var modifiedSections = 
 
             // Update the cellMetadata with the modified trueIndex
             if movedUp {
