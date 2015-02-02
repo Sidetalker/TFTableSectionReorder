@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TFTableSectionReorder/TableReorderController.swift"
-            timestampString = "444341512.2313"
+            timestampString = "444578932.601156"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "497"
-            endingLineNumber = "497"
+            startingLineNumber = "529"
+            endingLineNumber = "529"
             landmarkName = "tableView(_:editingStyleForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TFTableSectionReorder/TableReorderController.swift"
-            timestampString = "444341512.2313"
+            timestampString = "444578932.601156"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "429"
-            endingLineNumber = "429"
+            startingLineNumber = "461"
+            endingLineNumber = "461"
             landmarkName = "TableReorderController"
             landmarkType = "3">
          </BreakpointContent>
@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TFTableSectionReorder/TableReorderController.swift"
-            timestampString = "444341512.2313"
+            timestampString = "444578932.601156"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "428"
-            endingLineNumber = "428"
+            startingLineNumber = "460"
+            endingLineNumber = "460"
             landmarkName = "TableReorderController"
             landmarkType = "3">
          </BreakpointContent>
@@ -330,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TFTableSectionReorder/TableReorderController.swift"
-            timestampString = "444341512.2313"
+            timestampString = "444578932.601156"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "410"
-            endingLineNumber = "410"
+            startingLineNumber = "442"
+            endingLineNumber = "442"
             landmarkName = "rectifyTrueIndices()"
             landmarkType = "5">
          </BreakpointContent>
@@ -459,11 +459,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TFTableSectionReorder/TableReorderController.swift"
-            timestampString = "444341512.2313"
+            timestampString = "444578932.601156"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "427"
-            endingLineNumber = "427"
+            startingLineNumber = "459"
+            endingLineNumber = "459"
             landmarkName = "DataManager"
             landmarkType = "3">
          </BreakpointContent>
@@ -579,11 +579,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TFTableSectionReorder/TableReorderController.swift"
-            timestampString = "444341512.2313"
+            timestampString = "444578932.601156"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "403"
-            endingLineNumber = "403"
+            startingLineNumber = "435"
+            endingLineNumber = "435"
             landmarkName = "completeMove(_:destination:)"
             landmarkType = "5">
             <Locations>
@@ -594,12 +594,12 @@
                   symbolName = "TFTableSectionReorder.DataManager.completeMove (TFTableSectionReorder.DataManager)(ObjectiveC.NSIndexPath, destination : ObjectiveC.NSIndexPath) -&gt; ()"
                   moduleName = "TFTableSectionReorder"
                   urlString = "file:///Users/transfinder/Documents/github/TFTableSectionReorder/TFTableSectionReorder/TableReorderController.swift"
-                  timestampString = "444342067.246104"
+                  timestampString = "444578988.854812"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "403"
-                  endingLineNumber = "403"
-                  offsetFromSymbolStart = "19036">
+                  startingLineNumber = "435"
+                  endingLineNumber = "435"
+                  offsetFromSymbolStart = "25420">
                </Location>
                <Location
                   shouldBeEnabled = "No"
@@ -608,12 +608,12 @@
                   symbolName = "TFTableSectionReorder.DataManager.completeMove (TFTableSectionReorder.DataManager)(ObjectiveC.NSIndexPath, destination : ObjectiveC.NSIndexPath) -&gt; ()"
                   moduleName = "TFTableSectionReorder"
                   urlString = "file:///Users/transfinder/Documents/github/TFTableSectionReorder/TFTableSectionReorder/TableReorderController.swift"
-                  timestampString = "444342067.246279"
+                  timestampString = "444578988.854973"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "403"
-                  endingLineNumber = "403"
-                  offsetFromSymbolStart = "19084">
+                  startingLineNumber = "435"
+                  endingLineNumber = "435"
+                  offsetFromSymbolStart = "25468">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -641,23 +641,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TFTableSectionReorder/TableReorderController.swift"
-            timestampString = "444340267.775356"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "388"
-            endingLineNumber = "388"
-            landmarkName = "completeMove(_:destination:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TFTableSectionReorder/TableReorderController.swift"
-            timestampString = "444340274.062041"
+            timestampString = "444577815.551124"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "389"
@@ -673,7 +657,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TFTableSectionReorder/TableReorderController.swift"
-            timestampString = "444341208.867397"
+            timestampString = "444577815.551124"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "390"
+            endingLineNumber = "390"
+            landmarkName = "completeMove(_:destination:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TFTableSectionReorder/TableReorderController.swift"
+            timestampString = "444577932.149539"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "395"
@@ -721,11 +721,123 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TFTableSectionReorder/TableReorderController.swift"
-            timestampString = "444341512.2313"
+            timestampString = "444578036.340411"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "400"
-            endingLineNumber = "400"
+            startingLineNumber = "407"
+            endingLineNumber = "407"
+            landmarkName = "completeMove(_:destination:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TFTableSectionReorder/TableReorderController.swift"
+            timestampString = "444578932.601156"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "437"
+            endingLineNumber = "437"
+            landmarkName = "completeMove(_:destination:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TFTableSectionReorder/TableReorderController.swift"
+            timestampString = "444577387.787679"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "308"
+            endingLineNumber = "308"
+            landmarkName = "completeMove(_:destination:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TFTableSectionReorder/TableReorderController.swift"
+            timestampString = "444577410.516439"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
+            landmarkName = "completeMove(_:destination:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TFTableSectionReorder/TableReorderController.swift"
+            timestampString = "444577479.644877"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "351"
+            endingLineNumber = "351"
+            landmarkName = "completeMove(_:destination:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TFTableSectionReorder/TableReorderController.swift"
+            timestampString = "444577811.783548"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "387"
+            endingLineNumber = "387"
+            landmarkName = "completeMove(_:destination:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TFTableSectionReorder/TableReorderController.swift"
+            timestampString = "444578818.759316"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "412"
+            endingLineNumber = "412"
+            landmarkName = "completeMove(_:destination:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TFTableSectionReorder/TableReorderController.swift"
+            timestampString = "444578820.288709"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "411"
+            endingLineNumber = "411"
             landmarkName = "completeMove(_:destination:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -737,11 +849,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TFTableSectionReorder/TableReorderController.swift"
-            timestampString = "444342069.071898"
+            timestampString = "444578932.601156"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "405"
-            endingLineNumber = "405"
+            startingLineNumber = "432"
+            endingLineNumber = "432"
+            landmarkName = "completeMove(_:destination:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TFTableSectionReorder/TableReorderController.swift"
+            timestampString = "444578986.692562"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "381"
+            endingLineNumber = "381"
+            landmarkName = "completeMove(_:destination:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TFTableSectionReorder/TableReorderController.swift"
+            timestampString = "444579163.643296"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "382"
+            endingLineNumber = "382"
             landmarkName = "completeMove(_:destination:)"
             landmarkType = "5">
          </BreakpointContent>

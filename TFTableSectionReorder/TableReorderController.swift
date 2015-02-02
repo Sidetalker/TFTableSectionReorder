@@ -384,19 +384,51 @@ class DataManager {
 
             if movedUp && startRow != endRow {
                 var curSection = cellData.sectionIndex
+                var passedFirst = false
 
                 for (var i = startRow; i >= endRow; i--) {
                     cells[i].trueIndex++
                     cells[startRow].trueIndex--
 
-                    if cells[i].isSection {
-//                        cells[i].isSection = false
-//                        cells[i + 1].isSection = true
+                    if cells[i].isSection && !passedFirst {
+                        passedFirst = true
                         curSection--
+                        cells[i].studentCount--
                     }
                 }
 
-//                cells[startRow].trueIndex--
+                for (var i = endRow; i >= 0; i--) {
+                    if cells[i].isSection {
+                        cells[i].studentCount++
+                        break
+                    }
+                }
+
+                cells[startRow].sectionIndex = curSection
+            }
+            else {
+                var curSection = cellData.sectionIndex
+                var passedFirst = false
+
+                for (var i = startRow; i <= endRow; i++) {
+                    cells[i].trueIndex--
+                    cells[startRow].trueIndex++
+
+                    if cells[i].isSection {
+                        curSection++
+                    }
+                }
+
+                for (var i = 0; i < cells.count; i++) {
+                    if cells[i].sectionIndex == curSection && cells[i].isSection {
+                        cells[i].studentCount++
+                    }
+
+                    if cells[i].sectionIndex == cellData.sectionIndex && cells[i].isSection {
+                        cells[i].studentCount++
+                    }
+                }
+                
                 cells[startRow].sectionIndex = curSection
             }
 
