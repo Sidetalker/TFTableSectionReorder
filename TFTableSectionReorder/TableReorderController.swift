@@ -511,6 +511,7 @@ class TableReorderController: UITableViewController, UITableViewDataSource, UITa
         if cellID == "cellStop" {
             var cell = tableView.dequeueReusableCellWithIdentifier(cellID) as StopCell
             cell.textLabel?.text = cellText
+            cell.backgroundColor = UIColor.darkGrayColor()
             cell.indexPath = indexPath
             cell.delegate = self
 
